@@ -29,7 +29,7 @@ interface WorkExperienceItem {
 
     
   return (
-    <div>
+    <div  className="flex flex-col gap-4 w-full">
       <h1 className="text-2xl font-bold">Work Experience</h1>
       <ol className="relative border-s border-gray-200 dark:border-gray-700">
         {workExperienceData.map((experience, index) => (
@@ -42,7 +42,7 @@ interface WorkExperienceItem {
                     {experience.jobTitle} at {experience.companyName}
                 </h3>
                 {experience.description.map((desc, descIndex) => (
-                    <p key={descIndex} className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
+                    <p key={descIndex} className="text-base font-normal text-gray-800 dark:text-gray-400">
                         {desc}
                     </p>
                 ))}
