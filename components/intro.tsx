@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import ProfileImage from '@/app/images/image.jpg';
 
-const Intro = () => {
+export default function Intro() {
   return (
     <div>
         <div className="w-full flex flex-col-reverse lg:flex-row gap-14 justify-between items-center -z-10">
@@ -24,5 +24,3 @@ const Intro = () => {
     </div>
   )
 }
-
-export default Intro
