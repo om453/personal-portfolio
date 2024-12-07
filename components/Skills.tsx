@@ -1,4 +1,5 @@
 import React from "react";
+import Image from 'next/image';
 
 const skillsData = [
   {
@@ -71,7 +72,7 @@ const skillsData = [
   },
   {
     name: "RESTful APIs",
-    icon: " ",
+    icon: "/public/skills/postman.svg",
   },
 ];
 
@@ -85,10 +86,12 @@ function Skills() {
             key={index}
             className="bg-gray-500 text-gray-100 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300 flex items-center gap-1"
           >
-            <img
+            <Image
               src={skill.icon}
               alt={skill.name}
-              className="w-4 h-4 "
+              width={16}
+              height={16}
+              className="w-4 h-4"
             />
             {skill.name}
           </span>
