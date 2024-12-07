@@ -1,6 +1,6 @@
 
 import WorkExperience from '@/components/WorkExperience';
-import Intro from'../components/Intro';
+import Intro from'@/components/Intro';
 import Education from '@/components/Education';
 import Skills from '@/components/Skills';
 export default function Home() {
