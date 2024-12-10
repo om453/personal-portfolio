@@ -7,6 +7,7 @@ import {
   useMotionValue,
   useSpring,
   useTransform,
+  MotionValue,
 } from "framer-motion";
 
 import { cn } from "@/lib/utils";
@@ -26,6 +27,15 @@ const DEFAULT_DISTANCE = 140;
 const dockVariants = cva(
   "mx-auto w-max mt-8 h-[58px] p-2 flex gap-2 rounded-2xl shadow-md border border-slate-200 supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 backdrop-blur-md dark:border-slate-800 bg-white/10 dark:bg-black/10"
 );
+
+interface DockChildElement extends React.ReactElement {
+  props: {
+    mousex?: MotionValue<number>;
+    mousey?: MotionValue<number>;
+    magnification?: number;
+    distance?: number;
+  };
+}
 
 const Dock = React.forwardRef<HTMLDivElement, DockProps>(
   (
@@ -92,8 +102,8 @@ export interface DockIconProps {
   size?: number;
   magnification?: number;
   distance?: number;
-  mousex?: any;
-  mousey?: any;
+  mousex?: MotionValue<number>;
+  mousey?: MotionValue<number>;
   className?: string;
   children?: React.ReactNode;
   props?: PropsWithChildren;
@@ -111,25 +121,29 @@ const DockIcon = ({
 }: DockIconProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
-  const distanceHeightCalc = useTransform(mousey, (val: number) => {
-    const bounds = ref.current?.getBoundingClientRect() ?? { y: 0, height: 0 };
+  const defaultX = useMotionValue(0);
+  const defaultY = useMotionValue(0);
+  
+  const safeMouseX = mousex || defaultX;
+  const safeMouseY = mousey || defaultY;
 
+  const distanceHeightCalc = useTransform(safeMouseY, (val: number) => {
+    const bounds = ref.current?.getBoundingClientRect() ?? { y: 0, height: 0 };
     return val - bounds.y - bounds.height / 2;
   });
 
-  const distanceWidthCalc = useTransform(mousex, (val: number) => {
+  const distanceWidthCalc = useTransform(safeMouseX, (val: number) => {
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
-
     return val - bounds.x - bounds.width / 2;
   });
 
-  const heightSync = useTransform(
+  const heightSync = useTransform<number, number>(
     distanceHeightCalc,
     [-distance, 0, distance],
     [40, magnification, 40]
   );
 
-  const widthSync = useTransform(
+  const widthSync = useTransform<number, number>(
     distanceWidthCalc,
     [-distance, 0, distance],
     [40, magnification, 40]
