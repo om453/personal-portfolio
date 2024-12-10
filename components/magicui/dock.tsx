@@ -28,14 +28,6 @@ const dockVariants = cva(
   "mx-auto w-max mt-8 h-[58px] p-2 flex gap-2 rounded-2xl shadow-md border border-slate-200 supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 backdrop-blur-md dark:border-slate-800 bg-white/10 dark:bg-black/10"
 );
 
-interface DockChildElement extends React.ReactElement {
-  props: {
-    mousex?: MotionValue<number>;
-    mousey?: MotionValue<number>;
-    magnification?: number;
-    distance?: number;
-  };
-}
 
 const Dock = React.forwardRef<HTMLDivElement, DockProps>(
   (
