@@ -28,7 +28,6 @@ const dockVariants = cva(
   "mx-auto w-max mt-8 h-[58px] p-2 flex gap-2 rounded-2xl shadow-md border border-slate-200 supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 backdrop-blur-md dark:border-slate-800 bg-white/10 dark:bg-black/10"
 );
 
-
 const Dock = React.forwardRef<HTMLDivElement, DockProps>(
   (
     {
@@ -116,13 +115,13 @@ const DockIcon = ({
 }: DockIconProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
-  const distanceHeightCalc = useTransform(mousey ?? new MotionValue(), (val: number) => {
+  const distanceHeightCalc = useTransform(mousey ?? new MotionValue(), () => {
     const bounds = ref.current?.getBoundingClientRect() ?? { y: 0, height: 0 };
 
-    return (mousey?.get() ?? val) - bounds.y - bounds.height / 2;
+    return (mousey?.get() ?? 0) - bounds.y - bounds.height / 2;
   });
 
-  const distanceWidthCalc = useTransform(mousex ?? new MotionValue(), (val: number) => {
+  const distanceWidthCalc = useTransform(mousex ?? new MotionValue(), () => {
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
 
     return (mousex?.get() ?? 0) - bounds.x - bounds.width / 2;
