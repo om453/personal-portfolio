@@ -72,7 +72,7 @@ const skillsData = [
   },
   {
     name: "RESTful APIs",
-    icon: "/skills/postman.svg",
+    icon: "/skills/rest-api-icon.svg",
   },
 ];
 
