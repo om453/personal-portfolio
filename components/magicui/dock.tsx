@@ -7,6 +7,7 @@ import {
   useMotionValue,
   useSpring,
   useTransform,
+  MotionValue,
 } from "framer-motion";
 
 import { cn } from "@/lib/utils";
@@ -96,8 +97,8 @@ export interface DockIconProps {
   size?: number;
   magnification?: number;
   distance?: number;
-  mousex?: any;
-  mousey?: any;
+  mousex?: MotionValue<number>;
+  mousey?: MotionValue<number>;
   className?: string;
   children?: React.ReactNode;
   props?: PropsWithChildren;
@@ -115,16 +116,16 @@ const DockIcon = ({
 }: DockIconProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
-  const distanceHeightCalc = useTransform(mousey, (val: number) => {
+  const distanceHeightCalc = useTransform(mousey ?? new MotionValue(), (val: number) => {
     const bounds = ref.current?.getBoundingClientRect() ?? { y: 0, height: 0 };
 
-    return val - bounds.y - bounds.height / 2;
+    return (mousey?.get() ?? val) - bounds.y - bounds.height / 2;
   });
 
-  const distanceWidthCalc = useTransform(mousex, (val: number) => {
+  const distanceWidthCalc = useTransform(mousex ?? new MotionValue(), (val: number) => {
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
 
-    return val - bounds.x - bounds.width / 2;
+    return (mousex?.get() ?? 0) - bounds.x - bounds.width / 2;
   });
 
   const heightSync = useTransform(
@@ -132,9 +133,8 @@ const DockIcon = ({
     [-distance, 0, distance],
     [40, magnification, 40]
   );
-
   const widthSync = useTransform(
-    distanceWidthCalc,
+    distanceWidthCalc as MotionValue<number>,
     [-distance, 0, distance],
     [40, magnification, 40]
   );
