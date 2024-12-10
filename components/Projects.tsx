@@ -1,6 +1,8 @@
 import Link from "next/link";
 import React from "react";
 import { Button } from "./ui/button";
+import { FaGithub } from "react-icons/fa";
+import { CiGlobe } from "react-icons/ci";
 
 const projectsData = [  
   {
@@ -70,10 +72,10 @@ function Projects() {
               </div>
               <div className="flex gap-2 mt-auto">
                 <Link href={project.link}>
-                  <Button variant="default">View</Button>
+                    <Button variant="default"> <CiGlobe /> View</Button>
                 </Link>
                 <Link href={project.code}>
-                  <Button variant="outline">Code</Button>
+                  <Button variant="outline"> <FaGithub /> Code</Button>
                 </Link>
               </div>
             </div>
