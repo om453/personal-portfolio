@@ -7,7 +7,6 @@ import {
   useMotionValue,
   useSpring,
   useTransform,
-  MotionValue,
 } from "framer-motion";
 
 import { cn } from "@/lib/utils";
