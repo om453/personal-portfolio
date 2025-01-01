@@ -17,6 +17,17 @@ const projectsData = [
     ],
   },
   {
+    title: "PairUp",
+    description:
+      "A Real-Time Collaborative Code Editor that enables developers to write and edit code simultaneously in a shared environment",
+    link: "https://pairup-webapp.vercel.app/",
+    code: "https://github.com/om453/PairUp-RealTime-Code-Editor-Collaboration",
+    previewVideo: "/videos/PairupdemovideoReview.webm",
+    technologies: [
+      "React.js", "Node.js", "Express.js", "CodeMirror", "Socket.io", "Tailwind CSS"
+    ],
+  },
+  {
     title: "DetectPro",
     description:
       "AI-powered object detection app using TensorFlow.js and Next.js. Features real-time webcam detection, auto-recording, and comprehensive controls for professional and security applications.",
@@ -35,7 +46,7 @@ const projectsData = [
     technologies: [
      "React.js", "Redux", "Tailwind CSS", "JavaScript"
     ],
-  },
+  }
 ];
 
 function Projects() {
@@ -77,11 +88,22 @@ function Projects() {
                 <Link href={project.code}>
                   <Button variant="outline"> <FaGithub /> Code</Button>
                 </Link>
+
               </div>
             </div>
           </div>
         ))}
       </div>
+        <div className="flex items-center justify-center gap-2 text-xls text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
+          <span>Discover more projects on</span>
+          <Link 
+            href='https://github.com/om453' 
+            className="flex items-center gap-1 font-medium underline-offset-4 hover:underline text-black"
+          >
+            <FaGithub className="w-4 h-4" />
+            GitHub
+          </Link>
+        </div>
     </div>
   );
 }
