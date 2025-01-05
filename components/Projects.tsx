@@ -98,7 +98,7 @@ function Projects() {
           <span>Discover more projects on</span>
           <Link 
             href='https://github.com/om453' 
-            className="flex items-center gap-1 font-medium underline-offset-4 hover:underline text-black"
+            className="flex items-center gap-1 font-medium underline-offset-4 hover:underline text-black dark:text-white"
           >
             <FaGithub className="w-4 h-4" />
             GitHub
